@@ -1,55 +1,41 @@
 {
-  "name": "@jmcrommen/ng4-click-outside",
+  "name": "ng-click-outside",
   "version": "1.0.2",
-  "description": "Angular 4 directive for handling click events outside an element.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jmcrommen/ng-click-outside.git"
-  },
-  "private": false,
-  "homepage": "https://github.com/jmcrommen/ng-click-outside",
-  "bugs": {
-    "url": "https://github.com/jmcrommen/ng-click-outside/issues"
-  },
-  "files": [
-    "src/*",
-    "lib/*",
-    "README.md",
-    "LICENSE"
-  ],
-  "author": "Eugene Cheung",
-  "license": "MIT",
-  "keywords": [
-    "angular",
-    "angular2",
-    "angular4",
-    "ng2",
-    "ng4",
-    "click",
-    "event",
-    "outside",
-    "handler"
-  ],
-  "main": "./lib/index.js",
-  "typings": "./lib/index.d.ts",
   "scripts": {
-    "lint": "tslint --type-check --project tsconfig.json src/**/*.ts",
-    "build": "npm run lint && rimraf lib && ngc",
-    "prepublish": "npm run build"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
-  "peerDependencies": {
-    "@angular/core": ">=2.3.0"
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~7.2.0",
+    "@angular/common": "~7.2.0",
+    "@angular/compiler": "~7.2.0",
+    "@angular/core": "~7.2.0",
+    "@angular/forms": "~7.2.0",
+    "@angular/platform-browser": "~7.2.0",
+    "@angular/platform-browser-dynamic": "~7.2.0",
+    "@angular/router": "~7.2.0",
+    "core-js": "^2.5.4",
+    "rxjs": "~6.3.3",
+    "tslib": "^1.9.0",
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular/common": "^4.3.1",
-    "@angular/compiler": "^4.3.1",
-    "@angular/compiler-cli": "^4.3.1",
-    "@angular/core": "^4.3.1",
-    "@angular/platform-browser": "^4.3.1",
-    "rimraf": "^2.6.1",
-    "rxjs": "^5.4.2",
-    "tslint": "^5.5.0",
-    "typescript": "^2.4.2",
-    "zone.js": "^0.8.14"
+    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular-devkit/build-ng-packagr": "~0.13.0",
+    "@angular/cli": "~7.3.9",
+    "@angular/compiler-cli": "~7.2.0",
+    "@angular/language-service": "~7.2.0",
+    "@types/node": "~8.9.4",
+    "ng-packagr": "^4.2.0",
+    "ts-node": "~7.0.0",
+    "tsickle": ">=0.34.0",
+    "tslib": "^1.9.0",
+    "tslint": "~5.11.0",
+    "typescript": "~3.2.2"
   }
 }
