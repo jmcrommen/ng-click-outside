@@ -21,7 +21,7 @@ Like binding to a regular `click` event in a template, you can do something like
 ## Installation
 
 ```shell
-npm install --save @jmcrommen/ng4-click-outside
+npm install --save @jmcrommen/ng-click-outside
 ```
 
 
@@ -30,7 +30,7 @@ npm install --save @jmcrommen/ng4-click-outside
 Add `ClickOutsideModule` to your list of module imports:
 
 ```typescript
-import { ClickOutsideModule } from 'ng4-click-outside';
+import { ClickOutsideModule } from '@jmcrommen/ng-click-outside';
 
 @NgModule({
   declarations: [AppComponent],
