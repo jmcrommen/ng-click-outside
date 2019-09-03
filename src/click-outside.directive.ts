@@ -24,11 +24,14 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
   @Input() delayClickOutsideInit: boolean = false;
   @Input() exclude: string = '';
   @Input() excludeBeforeClick: boolean = false;
+  @Input() include: string = '';
+  @Input() includeBeforeClick: boolean = false;
   @Input() clickOutsideEvents: string = '';
 
   @Output() clickOutside: EventEmitter<Event> = new EventEmitter<Event>();
 
   private _nodesExcluded: Array<HTMLElement> = [];
+  private _nodesIncluded: Array<HTMLElement> = [];
   private _events: Array<string> = ['click'];
 
   constructor(private _el: ElementRef,
@@ -58,7 +61,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
   ngOnChanges(changes: SimpleChanges) {
     if (isPlatformBrowser(this.platformId)) {
 
-      if (changes['attachOutsideOnClick'] || changes['exclude']) {
+      if (changes['attachOutsideOnClick'] || changes['exclude'] || changes['include']) {
         this._init();
       }
     }
@@ -70,6 +73,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
     }
 
     this._excludeCheck();
+    this._includeCheck();
 
     if (this.attachOutsideOnClick) {
       this._events.forEach(e => this._el.nativeElement.addEventListener(e, this._initOnClickBody));
@@ -103,12 +107,28 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  private _onClickBody(ev: Event) {
-    if (this.excludeBeforeClick) {
-      this._excludeCheck();
+  private _includeCheck() {
+      if (this.include) {
+        try {
+          const nodes = Array.from(document.querySelectorAll(this.include)) as Array<HTMLElement>;
+          if (nodes) {
+            this._nodesIncluded = nodes;
+          }
+        } catch (err) {
+          console.error('[ng-click-outside] Check your include selector syntax.', err);
+        }
+      }
     }
 
-    if (!this._el.nativeElement.contains(ev.target) && !this._shouldExclude(ev.target)) {
+  private _onClickBody(ev: Event) {
+      if (this.excludeBeforeClick) {
+        this._excludeCheck();
+      }
+      if (this.includeBeforeClick) {
+        this._includeCheck();
+      }
+
+    if (!this._el.nativeElement.contains(ev.target) && !this._shouldExclude(ev.target) && !this._shouldInclude(ev.target)) {
       this.clickOutside.emit(ev);
 
       if (this.attachOutsideOnClick) {
@@ -126,4 +146,14 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
 
     return false;
   }
+
+  private _shouldInclude(target): boolean {
+      for (let includeNode of this._nodesIncluded) {
+        if (includeNode.contains(target)) {
+          return true;
+        }
+      }
+  
+      return false;
+    }
 }

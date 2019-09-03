@@ -1,14 +1,15 @@
 {
-  "name": "ng4-click-outside",
-  "version": "1.0.1",
+  "name": "@jmcrommen/ng4-click-outside",
+  "version": "1.0.2",
   "description": "Angular 4 directive for handling click events outside an element.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chippdnyc/ng-click-outside.git"
+    "url": "https://github.com/jmcrommen/ng-click-outside.git"
   },
-  "homepage": "https://github.com/chippdnyc/ng-click-outside",
+  "private": false,
+  "homepage": "https://github.com/jmcrommen/ng-click-outside",
   "bugs": {
-    "url": "https://github.com/chippdnyc/ng-click-outside/issues"
+    "url": "https://github.com/jmcrommen/ng-click-outside/issues"
   },
   "files": [
     "src/*",
